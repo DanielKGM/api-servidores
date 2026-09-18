@@ -8,7 +8,6 @@ import com.municipio.backend.model.Servidor;
 
 public record ServidorResponse(
                 UUID id,
-                String matricula,
                 String nome,
                 String email,
                 LocalDate dataNascimento,
@@ -24,7 +23,6 @@ public record ServidorResponse(
 
                 return new ServidorResponse(
                                 servidor.getUuid(),
-                                servidor.getMatricula(),
                                 servidor.getNome(),
                                 servidor.getEmail(),
                                 servidor.getDataNascimento(),

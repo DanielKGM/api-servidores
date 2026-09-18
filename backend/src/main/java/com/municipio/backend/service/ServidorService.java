@@ -53,11 +53,6 @@ public class ServidorService {
 
         validarIdade(request.dataNascimento());
 
-        if (servidorRepository.existsByMatricula(request.matricula())) {
-            throw new RuntimeException(
-                    "Já existe um servidor com essa matrícula");
-        }
-
         if (servidorRepository.existsByEmailIgnoreCase(request.email())) {
             throw new RuntimeException(
                     "Já existe um servidor com esse e-mail");
@@ -88,7 +83,6 @@ public class ServidorService {
                 .findById(request.secretariaId())
                 .orElseThrow(() -> new RuntimeException("Secretaria não encontrada"));
 
-        servidor.setMatricula(request.matricula());
         servidor.setNome(request.nome());
         servidor.setEmail(request.email());
         servidor.setDataNascimento(request.dataNascimento());

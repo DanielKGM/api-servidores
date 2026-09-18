@@ -13,8 +13,6 @@ import jakarta.validation.constraints.Size;
 
 public record ServidorRequest(
 
-                @NotBlank(message = "Matrícula é obrigatória") @Size(max = 30, message = "Matrícula deve ter no máximo 30 caracteres") String matricula,
-
                 @NotBlank(message = "Nome é obrigatório") @Size(max = 150, message = "Nome deve ter no máximo 150 caracteres") String nome,
 
                 @NotBlank(message = "E-mail é obrigatório") @Email(message = "E-mail inválido") @Size(max = 150, message = "E-mail deve ter no máximo 150 caracteres") String email,
@@ -26,7 +24,6 @@ public record ServidorRequest(
 ) {
         public Servidor paraEntidade(Secretaria secretaria) {
                 return Servidor.builder()
-                                .matricula(matricula)
                                 .nome(nome)
                                 .email(email)
                                 .dataNascimento(dataNascimento)

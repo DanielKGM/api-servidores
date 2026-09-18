@@ -18,9 +18,6 @@ import lombok.Setter;
 @Setter
 @Builder
 public class Servidor extends EntidadeAuditavel {
-    @Column(nullable = false, unique = true, length = 30)
-    private String matricula;
-
     @Column(nullable = false, length = 150)
     private String nome;
 
