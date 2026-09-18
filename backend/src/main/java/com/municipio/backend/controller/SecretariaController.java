@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.municipio.backend.dto.ApiResponse;
 import com.municipio.backend.dto.SecretariaRequest;
 import com.municipio.backend.dto.SecretariaResponse;
 import com.municipio.backend.service.SecretariaService;
@@ -43,31 +44,31 @@ public class SecretariaController {
     }
 
     @PostMapping
-    public ResponseEntity<SecretariaResponse> criar(
+    public ResponseEntity<ApiResponse<SecretariaResponse>> criar(
             @Valid @RequestBody SecretariaRequest request) {
 
         SecretariaResponse response = service.criar(request);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(response);
+                .body(new ApiResponse<>("Secretaria criada com sucesso.", response));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SecretariaResponse> atualizar(
+    public ResponseEntity<ApiResponse<SecretariaResponse>> atualizar(
             @PathVariable UUID id,
             @Valid @RequestBody SecretariaRequest request) {
 
-        return ResponseEntity.ok(
-                service.atualizar(id, request));
+        SecretariaResponse response = service.atualizar(id, request);
+        return ResponseEntity.ok(new ApiResponse<>("Secretaria atualizada com sucesso.", response));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(
+    public ResponseEntity<ApiResponse<Void>> excluir(
             @PathVariable UUID id) {
 
         service.excluir(id);
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new ApiResponse<>("Secretaria excluida com sucesso.", null));
     }
 }

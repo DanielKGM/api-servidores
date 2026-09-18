@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.municipio.backend.model.Secretaria;
 
 public interface SecretariaRepo extends JpaRepository<Secretaria, UUID> {
-    public boolean existsBySiglaIgnoreCase(String sigla);
+    boolean existsBySiglaIgnoreCase(String sigla);
+
+    boolean existsBySiglaIgnoreCaseAndUuidNot(String sigla, UUID uuid);
 }
