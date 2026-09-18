@@ -11,9 +11,14 @@ body {
 }
 
 body {
-  background: var(--p-surface-50);
+  background: var(--p-surface-600);
   color: var(--p-text-color);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
 }
 
 button,
@@ -22,10 +27,10 @@ input {
 }
 
 .layout-topbar-surface.p-toolbar {
-  border-left: 0;
-  border-radius: 0;
-  border-right: 0;
-  border-top: 0;
+  border-left: 0 !important;
+  border-radius: 0 !important;
+  border-right: 0 !important;
+  border-top: 0 !important;
 }
 
 .layout-menu.p-menu {
@@ -53,7 +58,7 @@ input {
 }
 
 .table-column-actions {
-  text-align: right;
+  text-align: center;
   width: 7rem;
 }
 

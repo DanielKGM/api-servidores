@@ -1,6 +1,6 @@
 <app-page-header
   title="Servidores"
-  description="Cadastro e manutencao dos servidores municipais."
+  description="Cadastro e manutenção dos servidores municipais."
   actionLabel="Adicionar"
   [actionLink]="['/servidores/novo']"
 />
@@ -14,7 +14,7 @@
     [paginator]="true"
     [rows]="10"
     [rowsPerPageOptions]="[5, 10, 20]"
-    [alwaysShowPaginator]="true"
+    [alwaysShowPaginator]="false"
     [showCurrentPageReport]="true"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
     [rowHover]="true"
@@ -27,7 +27,7 @@
         <th>E-mail</th>
         <th>Nascimento</th>
         <th>Secretaria</th>
-        <th class="table-column-actions">Acoes</th>
+        <th class="table-column-actions">Ações</th>
       </tr>
     </ng-template>
 
@@ -36,12 +36,7 @@
         <td>{{ servidor.nome }}</td>
         <td>{{ servidor.email }}</td>
         <td>{{ servidor.dataNascimento | date: 'dd/MM/yyyy' }}</td>
-        <td>
-          <span class="secretaria-cell">
-            {{ servidor.secretariaNome }}
-            <p-tag [value]="servidor.secretariaSigla" severity="secondary" />
-          </span>
-        </td>
+        <td>{{ servidor.secretariaSigla }}</td>
         <td class="table-column-actions">
           <app-table-actions (edit)="editar(servidor)" (remove)="confirmarExclusao(servidor)" />
         </td>

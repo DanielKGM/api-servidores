@@ -31,7 +31,7 @@ export class App {
   private readonly navigationItems: MenuItem[] = [
     {
       label: 'Secretarias',
-      icon: 'pi pi-building-columns',
+      icon: 'pi pi-sitemap',
       routerLink: '/secretarias',
       title: 'Secretarias',
     },

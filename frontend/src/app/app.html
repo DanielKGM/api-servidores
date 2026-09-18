@@ -3,10 +3,10 @@
 
 <div class="layout-shell" [class.layout-shell--collapsed]="sidebarCollapsed">
   <aside class="layout-sidebar">
-    <a class="layout-brand" routerLink="/secretarias" aria-label="Servidores Municipais">
+    <a class="layout-brand" routerLink="/secretarias" aria-label="Município">
       <i class="pi pi-building-columns layout-brand__icon"></i>
       @if (!sidebarCollapsed) {
-        <strong>Servidores Municipais</strong>
+        <strong>Município</strong>
       }
     </a>
     <p-menu [model]="menuItems" styleClass="layout-menu" />
@@ -17,6 +17,7 @@
       <ng-template #start>
         <div class="layout-toolbar-group">
           <button
+            severity="secondary"
             pButton
             type="button"
             text
@@ -25,7 +26,7 @@
             [attr.aria-label]="sidebarCollapsed ? 'Expandir menu' : 'Recolher menu'"
             (click)="sidebarCollapsed = !sidebarCollapsed"
           >
-            <i [class]="sidebarCollapsed ? 'pi pi-angle-right' : 'pi pi-angle-left'"></i>
+            <i [class]="sidebarCollapsed ? 'pi pi-plus' : 'pi pi-minus'"></i>
           </button>
 
           <p-breadcrumb
