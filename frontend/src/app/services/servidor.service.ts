@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, defer, finalize } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { ApiResponse } from '../dto/api-response.dto';
 import { ServidorRequest, ServidorResponse } from '../dto/servidor.dto';
 
 @Injectable({
@@ -23,16 +24,18 @@ export class ServidorService {
     return this.track(this.http.get<ServidorResponse>(`${this.apiUrl}/${id}`));
   }
 
-  criar(request: ServidorRequest): Observable<ServidorResponse> {
-    return this.track(this.http.post<ServidorResponse>(this.apiUrl, request));
+  criar(request: ServidorRequest): Observable<ApiResponse<ServidorResponse>> {
+    return this.track(this.http.post<ApiResponse<ServidorResponse>>(this.apiUrl, request));
   }
 
-  atualizar(id: string, request: ServidorRequest): Observable<ServidorResponse> {
-    return this.track(this.http.put<ServidorResponse>(`${this.apiUrl}/${id}`, request));
+  atualizar(id: string, request: ServidorRequest): Observable<ApiResponse<ServidorResponse>> {
+    return this.track(
+      this.http.put<ApiResponse<ServidorResponse>>(`${this.apiUrl}/${id}`, request),
+    );
   }
 
-  excluir(id: string): Observable<void> {
-    return this.track(this.http.delete<void>(`${this.apiUrl}/${id}`));
+  excluir(id: string): Observable<ApiResponse<null>> {
+    return this.track(this.http.delete<ApiResponse<null>>(`${this.apiUrl}/${id}`));
   }
 
   private track<T>(request$: Observable<T>): Observable<T> {

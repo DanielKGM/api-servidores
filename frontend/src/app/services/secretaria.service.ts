@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, defer, finalize } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { ApiResponse } from '../dto/api-response.dto';
 import { SecretariaRequest, SecretariaResponse } from '../dto/secretaria.dto';
 
 @Injectable({
@@ -23,16 +24,18 @@ export class SecretariaService {
     return this.track(this.http.get<SecretariaResponse>(`${this.apiUrl}/${id}`));
   }
 
-  criar(request: SecretariaRequest): Observable<SecretariaResponse> {
-    return this.track(this.http.post<SecretariaResponse>(this.apiUrl, request));
+  criar(request: SecretariaRequest): Observable<ApiResponse<SecretariaResponse>> {
+    return this.track(this.http.post<ApiResponse<SecretariaResponse>>(this.apiUrl, request));
   }
 
-  atualizar(id: string, request: SecretariaRequest): Observable<SecretariaResponse> {
-    return this.track(this.http.put<SecretariaResponse>(`${this.apiUrl}/${id}`, request));
+  atualizar(id: string, request: SecretariaRequest): Observable<ApiResponse<SecretariaResponse>> {
+    return this.track(
+      this.http.put<ApiResponse<SecretariaResponse>>(`${this.apiUrl}/${id}`, request),
+    );
   }
 
-  excluir(id: string): Observable<void> {
-    return this.track(this.http.delete<void>(`${this.apiUrl}/${id}`));
+  excluir(id: string): Observable<ApiResponse<null>> {
+    return this.track(this.http.delete<ApiResponse<null>>(`${this.apiUrl}/${id}`));
   }
 
   private track<T>(request$: Observable<T>): Observable<T> {
