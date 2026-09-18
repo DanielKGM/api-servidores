@@ -24,7 +24,7 @@ public record ServidorRequest(
                 @NotNull(message = "Secretaria é obrigatória") UUID secretariaId
 
 ) {
-        public Servidor toEntity(Secretaria secretaria) {
+        public Servidor paraEntidade(Secretaria secretaria) {
                 return Servidor.builder()
                                 .matricula(matricula)
                                 .nome(nome)

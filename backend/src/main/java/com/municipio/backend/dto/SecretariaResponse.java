@@ -12,7 +12,7 @@ public record SecretariaResponse(
         Instant createdAt,
         Instant updatedAt) {
 
-    public static SecretariaResponse fromEntity(Secretaria secretaria) {
+    public static SecretariaResponse deEntidade(Secretaria secretaria) {
         return new SecretariaResponse(
                 secretaria.getUuid(),
                 secretaria.getNome(),

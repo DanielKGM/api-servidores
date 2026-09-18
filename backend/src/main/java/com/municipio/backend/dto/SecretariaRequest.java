@@ -11,7 +11,7 @@ public record SecretariaRequest(
                 @NotBlank(message = "Sigla é obrigatória") @Size(max = 20, message = "Sigla deve ter no máximo 20 caracteres") String sigla
 
 ) {
-        public Secretaria toEntity() {
+        public Secretaria paraEntidade() {
                 return Secretaria.builder()
                                 .nome(nome)
                                 .sigla(sigla)

@@ -20,7 +20,7 @@ public record ServidorResponse(
                 Instant createdAt,
                 Instant updatedAt) {
 
-        public static ServidorResponse fromEntity(Servidor servidor) {
+        public static ServidorResponse deEntidade(Servidor servidor) {
 
                 return new ServidorResponse(
                                 servidor.getUuid(),
