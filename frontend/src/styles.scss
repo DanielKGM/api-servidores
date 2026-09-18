@@ -57,9 +57,14 @@ input {
   justify-content: center;
 }
 
-.table-column-actions {
-  text-align: center;
+.p-datatable th.table-column-actions {
   width: 7rem;
+  text-align: center;
+}
+
+.p-datatable td.table-column-actions {
+  width: 7rem;
+  text-align: center;
 }
 
 .empty-state {
