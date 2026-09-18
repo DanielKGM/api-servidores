@@ -8,6 +8,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ import lombok.Setter;
 @Table(name = "servidor")
 @Getter
 @Setter
+@Builder
 public class Servidor extends EntidadeAuditavel {
     @Column(nullable = false, unique = true, length = 30)
     private String matricula;
