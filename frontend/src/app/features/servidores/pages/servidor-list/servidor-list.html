@@ -1,0 +1,57 @@
+<app-page-header
+  title="Servidores"
+  description="Cadastro e manutencao dos servidores municipais."
+  actionLabel="Adicionar"
+  [actionLink]="['/servidores/novo']"
+/>
+
+<p-card>
+  <app-loading-bar [loading]="loading$ | async" />
+
+  <p-table
+    [value]="(servidores$ | async) ?? []"
+    dataKey="id"
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [alwaysShowPaginator]="true"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    [rowHover]="true"
+    [stripedRows]="true"
+    [tableStyle]="{ 'min-width': '58rem' }"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Nascimento</th>
+        <th>Secretaria</th>
+        <th class="table-column-actions">Acoes</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-servidor>
+      <tr>
+        <td>{{ servidor.nome }}</td>
+        <td>{{ servidor.email }}</td>
+        <td>{{ servidor.dataNascimento | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <span class="secretaria-cell">
+            {{ servidor.secretariaNome }}
+            <p-tag [value]="servidor.secretariaSigla" severity="secondary" />
+          </span>
+        </td>
+        <td class="table-column-actions">
+          <app-table-actions (edit)="editar(servidor)" (remove)="confirmarExclusao(servidor)" />
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="5" class="empty-state">Nenhum servidor cadastrado.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

@@ -1,0 +1,59 @@
+<app-page-header
+  [title]="isEditing ? 'Editar servidor' : 'Novo servidor'"
+  description="Informe os dados do servidor e vincule uma secretaria."
+/>
+
+<p-card styleClass="form-surface">
+  <app-loading-bar [loading]="loading$ | async" />
+
+  <form [formGroup]="form" class="entity-form" (ngSubmit)="salvar()">
+    <div class="form-grid">
+      <label class="form-field">
+        <span>Nome</span>
+        <input pInputText formControlName="nome" maxlength="150" />
+        <app-field-error [control]="form.controls.nome" [submitted]="submitted" />
+      </label>
+
+      <label class="form-field">
+        <span>E-mail</span>
+        <input pInputText type="email" formControlName="email" maxlength="150" />
+        <app-field-error [control]="form.controls.email" [submitted]="submitted" />
+      </label>
+
+      <label class="form-field">
+        <span>Data de nascimento</span>
+        <input pInputText type="date" formControlName="dataNascimento" />
+        <app-field-error [control]="form.controls.dataNascimento" [submitted]="submitted" />
+      </label>
+
+      <label class="form-field">
+        <span>Secretaria</span>
+        <p-select
+          formControlName="secretariaId"
+          [options]="secretarias"
+          optionLabel="nome"
+          optionValue="id"
+          placeholder="Selecione"
+          [fluid]="true"
+        />
+        <app-field-error [control]="form.controls.secretariaId" [submitted]="submitted" />
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <a pButton routerLink="/servidores" severity="secondary" outlined>
+        <i class="pi pi-arrow-left"></i>
+        <span>Cancelar</span>
+      </a>
+
+      <button pButton type="submit" [disabled]="saving">
+        @if (saving) {
+          <i class="pi pi-spin pi-spinner"></i>
+        } @else {
+          <i class="pi pi-check"></i>
+        }
+        <span>Salvar</span>
+      </button>
+    </div>
+  </form>
+</p-card>
