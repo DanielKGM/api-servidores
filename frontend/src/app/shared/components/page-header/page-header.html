@@ -1,0 +1,15 @@
+<section class="page-header">
+  <div>
+    <h1>{{ title() }}</h1>
+    @if (description()) {
+      <p>{{ description() }}</p>
+    }
+  </div>
+
+  @if (actionLabel() && actionLink()) {
+    <a pButton [routerLink]="actionLink()" class="page-header__action">
+      <i class="pi pi-plus"></i>
+      <span>{{ actionLabel() }}</span>
+    </a>
+  }
+</section>

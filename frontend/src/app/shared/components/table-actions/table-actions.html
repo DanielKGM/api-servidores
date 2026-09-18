@@ -1,0 +1,31 @@
+<div class="table-actions">
+  <button
+    pButton
+    type="button"
+    text
+    rounded
+    iconOnly
+    severity="secondary"
+    pTooltip="Editar"
+    tooltipPosition="top"
+    aria-label="Editar"
+    (click)="edit.emit()"
+  >
+    <i class="pi pi-pencil"></i>
+  </button>
+
+  <button
+    pButton
+    type="button"
+    text
+    rounded
+    iconOnly
+    severity="danger"
+    pTooltip="Excluir"
+    tooltipPosition="top"
+    aria-label="Excluir"
+    (click)="remove.emit()"
+  >
+    <i class="pi pi-trash"></i>
+  </button>
+</div>
