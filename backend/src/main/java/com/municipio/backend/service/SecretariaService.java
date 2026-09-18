@@ -77,7 +77,7 @@ public class SecretariaService {
             throw new RuntimeException("Secretaria não encontrada");
         }
 
-        if (servidorRepository.existsBySecretariaId(id)) {
+        if (servidorRepository.existsBySecretaria_Uuid(id)) {
             throw new RuntimeException(
                     "Não é possível excluir a secretaria pois existem servidores vinculados a ela.");
         }
