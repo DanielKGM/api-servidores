@@ -46,8 +46,6 @@ A aplicação deve permitir: listar, cadastrar, editar e excluir Servidores e Se
 - Mensagens de erro e sucesso corretamente mapeadas
 - Validação no formulário
 
----
-
 ## Requisitos Técnicos
 
 Backend:
