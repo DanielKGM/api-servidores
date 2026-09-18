@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.municipio.backend.dto.ApiResponse;
 import com.municipio.backend.dto.ServidorRequest;
 import com.municipio.backend.dto.ServidorResponse;
 import com.municipio.backend.service.ServidorService;
@@ -43,31 +44,31 @@ public class ServidorController {
     }
 
     @PostMapping
-    public ResponseEntity<ServidorResponse> criar(
+    public ResponseEntity<ApiResponse<ServidorResponse>> criar(
             @Valid @RequestBody ServidorRequest request) {
 
         ServidorResponse response = service.criar(request);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(response);
+                .body(new ApiResponse<>("Servidor criado com sucesso.", response));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ServidorResponse> atualizar(
+    public ResponseEntity<ApiResponse<ServidorResponse>> atualizar(
             @PathVariable UUID id,
             @Valid @RequestBody ServidorRequest request) {
 
-        return ResponseEntity.ok(
-                service.atualizar(id, request));
+        ServidorResponse response = service.atualizar(id, request);
+        return ResponseEntity.ok(new ApiResponse<>("Servidor atualizado com sucesso.", response));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(
+    public ResponseEntity<ApiResponse<Void>> excluir(
             @PathVariable UUID id) {
 
         service.excluir(id);
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new ApiResponse<>("Servidor excluido com sucesso.", null));
     }
 }

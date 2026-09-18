@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.municipio.backend.model.Servidor;
 
 public interface ServidorRepo extends JpaRepository<Servidor, UUID> {
-    public boolean existsByEmailIgnoreCase(String email);
+    boolean existsByEmailIgnoreCase(String email);
 
-    public boolean existsBySecretaria_Uuid(UUID secretariaId);
+    boolean existsByEmailIgnoreCaseAndUuidNot(String email, UUID uuid);
+
+    boolean existsBySecretaria_Uuid(UUID secretariaId);
 }
